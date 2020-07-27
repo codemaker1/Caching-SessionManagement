@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config http://www.hazelcast.com/schema/config/hazelcast-config-3.7.xsd"
+		xmlns="http://www.hazelcast.com/schema/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<group>
+		<name>cache-demo-group</name>
+		<password>cache-password-123</password>
+	</group>
+
+	<map name="books">
+		<max-idle-seconds>10000</max-idle-seconds> <!-- Maximum time in seconds for each entry to stay idle in the map. 4 hours here -->
+		<eviction-policy>LFU</eviction-policy> <!-- The entries least frequently used will be evicted -->
+		<max-size>1000</max-size> <!-- Maximum size of the userInfo map -->
+		<eviction-percentage>25</eviction-percentage> <!-- When max-size is reached, the specified percentage of the map will be evicted. -->
+	</map>
+
+	<map name="user">
+		<max-idle-seconds>10000</max-idle-seconds> <!-- Maximum time in seconds for each entry to stay idle in the map. 4 hours here -->
+		<eviction-policy>LFU</eviction-policy> <!-- The entries least frequently used will be evicted -->
+		<max-size>1000</max-size> <!-- Maximum size of the userInfo map -->
+		<eviction-percentage>25</eviction-percentage> <!-- When max-size is reached, the specified percentage of the map will be evicted. -->
+	</map>
+	
+	<network>
+		<join>
+			<multicast enabled="false"/>
+			<tcp-ip enabled="true">
+				<member>127.0.0.1</member>
+			</tcp-ip>
+		</join>
+	</network>
+
+	<management-center enabled="true">
+		http://localhost:9000
+	</management-center>
+	
+</hazelcast>
